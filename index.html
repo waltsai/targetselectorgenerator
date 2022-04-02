@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <link rel="icon" href="icon.ico" type="image/x-icon">
+      <title>哈哈指令團-目標選擇器</title>
+      <link href="style.css" rel="stylesheet" type="text/css">
+   </head>
+   <body>
+      <img style="float: left;" src="https://drive.google.com/uc?export=view&id=1XW_Jk62a2EfqaZqkw7ngV64jqeuS8NHs" alt="" width="168px">
+      <img style="float: right;" src="https://drive.google.com/uc?export=view&id=1yoNHU2MxVND7UGpwwYJl85m8kGAePPMD" alt="" width="126px">
+      <br><br><br><br>
+      <hr>
+      <h3>如何使用這個產生器?</h3>
+      <p>首先，從以下五種選項中任選一個，作為目標的主要考量。此處使用sort參數來達到目的而非@a。@e等變數，由於sort參數能夠被較為靈活地使用。<br></p>
+      <ul>
+         <li>若要使用目標變數來達到目的，請勾選「使用目標變數」選項。</li>
+         <li>若要選擇「指令的執行者」作為目標的話，請勾選「指令的執行者」選項。</li>
+         <li>若要設定選擇實體的最大數量的話，請將最大數量填進「允許數量」數字欄內。</li>
+         <li>若不要設定最大數量，請將-1填進「允許數量」數字欄內。</li>
+      </ul>
+      <div>
+         <select id= "target-options-1" style="font-size: 18px; float:left; width: 128px;">
+            <option value = "arbitrary">所有的</option>
+            <option value = "nearest">最近的</option>
+            <option value = "furthest">最遠的</option>
+            <option value = "random">隨機的</option>
+         </select>
+         <select id= "target-options-2" style="font-size: 18px; float:left; width: 128px;">
+            <option value = "player">玩家</option>
+            <option value = "entity">實體</option>
+         </select>
+         <input type="checkbox" id="target-using-variables" style="float:left; margin: 5px; width: 16px">
+         <label for="target-using-variables" style="float:left;">使用目標變數?&nbsp</label>
+         <input type="checkbox" id="target-command-user" style="float:left; margin: 5px;">
+         <label for="get-command-user" style="float:left;">指令的執行者?&nbsp</label>
+         <p style="font-size: 18px; float:left;">&nbsp&nbsp</p>
+         <label for="target-count" style="float:left;">允許數量:&nbsp</label>
+         <input type="number" value="-1" id="target-count" style="margin: -2px; font-size: 18px; float:left; width: 64px;" min="-1" max="999">
+      </div>
+      <br><br><br><br>
+      <p>接下來，你可以自由新增選擇參數，用來當作選擇目標的額外條件。</p>
+      <fieldset>
+         <legend>位置參數</legend>
+         <form>
+            <div>
+               <p style="float:left;">&nbsp請先選定一個座標:&nbsp&nbsp&nbsp&nbsp</p>
+               <input type="number" id="target-pos-x1" style="margin: 15px; font-size: 18px; float:left; width: 96px;" placeholder="填入x座標">
+               <input type="number" id="target-pos-y1" style="margin: 15px; font-size: 18px; float:left; width: 96px;"  placeholder="填入y座標">
+               <input type="number" id="target-pos-z1" style="margin: 15px; font-size: 18px; float:left; width: 96px;"  placeholder="填入z座標">
+               <p style="float:left;">(若沒有選定座標，則會選定為指令執行的座標。)</p>
+               <br><br><br><br>
+               <hr>
+               <p style="float:left;">選定座標後，有兩種方式可以選出目標:</p>
+               <br><br><br>
+               <ul style="float:left;">
+                  <li>再選定一個座標，將展開成一個長方體區域，只有在其內的對象才會被選擇。</li>
+                  <li>選擇距離的允許範圍，只有與該座標之距離在範圍內的才會被選擇。</li>
+               </ul>
+               <br><br><br><br><br><br>
+               <div id="target-pos-set-2ndpos">
+                  <input type="radio" id="target-pos-get-2ndpos" name="target-pos-approach"  style="float:left">
+                  <label for="target-pos-get-2ndpos" style="float:left;">&nbsp選定一個座標:&nbsp&nbsp&nbsp&nbsp</label>
+                  <input type="number" id="target-pos-x2" style="font-size: 18px; float:left; width: 96px;" placeholder="填入x座標">
+                  <p style="font-size: 18px; float:left;">&nbsp&nbsp&nbsp&nbsp</p>
+                  <input type="number" id="target-pos-y2" style="font-size: 18px; float:left; width: 96px;"  placeholder="填入y座標">
+                  <p style="font-size: 18px; float:left;">&nbsp&nbsp&nbsp&nbsp</p>
+                  <input type="number" id="target-pos-z2" style="font-size: 18px; float:left; width: 96px;"  placeholder="填入z座標">
+                  <br><br><br><br><br><br>
+                  <input type="radio" id="target-pos-get-distance" name="target-pos-approach"  style="float:left">
+                  <label for="target-pos-get-distance" style="float:left;">&nbsp填入允許距離之範圍:&nbsp&nbsp&nbsp&nbsp</label>
+                  <input type="number" id="target-pos-dismin" style="font-size: 18px; float:left; width: 144px;" placeholder="填入距離最小值" min="0">
+                  <p style="margin: 6px; font-size: 18px; float:left;">&nbsp~&nbsp</p>
+                  <input type="number" id="target-pos-dismax" style="font-size: 18px; float:left; width: 144px;"  placeholder="填入距離最大值" min="0">
+               </div>
+               <br><br><br><br>
+            </div>
+         </form>
+      </fieldset>
+      <br><br>
+      <fieldset>
+         <legend>方向參數</legend>
+         <div>
+            <p style="float:left;">&nbsp選定水平角度的範圍與垂直角度的範圍，只有方向在範圍內的對象才會被選擇。&nbsp&nbsp&nbsp&nbsp</p>
+            <br><br><br><br>
+            <label style="float:left;">&nbsp填入偏擺角之允許範圍:&nbsp&nbsp&nbsp&nbsp</label>
+            <input type="number" id="target-rot-ymin" style="font-size: 18px; float:left; width: 112px;" placeholder="填入最小值" min="-180">
+            <p style="margin: 6px; font-size: 18px; float:left;">&nbsp~&nbsp</p>
+            <input type="number" id="target-rot-ymax" style="font-size: 18px; float:left; width: 112px;"  placeholder="填入最大值" max="180">
+            <br><br><br><br>
+            <label style="float:left;">&nbsp填入俯仰角之允許範圍:&nbsp&nbsp&nbsp&nbsp</label>
+            <input type="number" id="target-rot-xmin" style="font-size: 18px; float:left; width: 112px;" placeholder="填入最小值" min="-90">
+            <p style="margin: 6px; font-size: 18px; float:left;">&nbsp~&nbsp</p>
+            <input type="number" id="target-rot-xmax" style="font-size: 18px; float:left; width: 112px;"  placeholder="填入最大值" max="90">
+         </div>
+      </fieldset>
+      <br><br>
+      <fieldset>
+         <legend>玩家參數</legend>
+         <div>
+            <p style="float:left;">設定玩家的經驗值範圍，只有在範圍內的玩家才會被選擇。</p>
+            <br><br><br><br>
+            <label style="float:left;">填入經驗值範圍:&nbsp&nbsp&nbsp&nbsp</label>
+            <input type="number" id="target-exp-min" style="font-size: 18px; float:left; width: 112px;" placeholder="填入最小值" min="-180">
+            <p style="margin: 6px; font-size: 18px; float:left;">&nbsp~&nbsp</p>
+            <input type="number" id="target-exp-max" style="font-size: 18px; float:left; width: 112px;"  placeholder="填入最大值" max="180">
+            <br><br><br><br>
+            <p style="float:left;">選定特定的遊戲模式，只有在該模式下的玩家才會被選擇。</p>
+            <br><br><br><br>
+            <label style="float:left;">選擇模式:&nbsp&nbsp&nbsp&nbsp</label>
+            <select id="target-mode" style="font-size: 18px; float:left; width: 308px;">
+               <option value="none">(選擇其一...)</option>
+               <option value="survival">survival 生存模式</option>
+               <option value="creative">creative 創造模式</option>
+               <option value="adventure">adventure 冒險模式</option>
+               <option value="spectator">spectator 觀察者模式</option>
+            </select>
+            <br><br>
+            <input type="checkbox" id="target-mode-inverse" style="float:left; margin: 5px; width: 16px">
+            <label for="target-mode-inverse" style="float:left;">設定為「不得為此模式」?&nbsp&nbsp&nbsp&nbsp</label>
+            <button id="target-mode-set-inverse" style="float:left; width: 240px" disabled= 'true'>新增不得處在的模式</button>
+            <br><br>
+            <label style="float:left;">&nbsp結果:&nbsp&nbsp</label>
+            <input id="target-mode-bar" style="font-size: 18px; float:left; width: 360px;" placeholder="例如:!a,!b => 不得處在A、B模式下">
+            <br><br><br><br>
+            <p style="float:left;">選定特定的遊戲模式，只有在該模式下的玩家才會被選擇。<br>如果不知道各個進度的觸發方式的話可以按<a href="https://home.gamer.com.tw/creationDetail.php?sn=3562150" target="_blank">這裡</a><br>列表中的顏色代表各系列的進度，分為<span style= "color: #727272">冒險</span>、<span style="color: #7F0A7C">終界</span>、<span style="color: #E40000">地獄</span>、<span style="color: #A1680A">農耕</span>、<span style="color: #08AA3B">故事</span>五個系列。</span>
+            <br><br><br><br><br>
+            <label style="float:left;">選擇進度:&nbsp&nbsp&nbsp&nbsp</label>
+            <select id="target-adv" style="font-size: 18px; float:left; width: 308px;">
+               <option value="none">(選擇其一...)</option>
+               <option value="adventure/adventuring_time" style="color: #727272">adventuring_time 冒險時光</option>
+               <option value="adventure/arbalistic" style="color: #727272">arbalistic 重弩手</option>
+               <option value="adventure/bullseye" style="color: #727272">bullseye 正中紅心</option>
+               <option value="adventure/hero_of_the_village" style="color: #727272">hero_of_the_village 村莊英雄</option>
+               <option value="adventure/kill_a_mob" style="color: #727272">kill_a_mob 魔物獵人</option>
+               <option value="adventure/kill_all_mobs" style="color: #727272">kill_all_mobs 獵取怪物</option>
+               <option value="adventure/ol_betsy" style="color: #727272">ol_betsy 扣下板機</option>
+               <option value="adventure/root" style="color: #727272">root 冒險</option>
+               <option value="adventure/shoot_arrow" style="color: #727272">shoot_arrow 瞄準</option>
+               <option value="adventure/sleep_in_bed" style="color: #727272">sleep_in_bed 甜美的夢</option>
+               <option value="adventure/sniper_duel" style="color: #727272">sniper_duel 狙擊手對決</option>
+               <option value="adventure/summon_iron_golem" style="color: #727272">summon_iron_golem 招兵買馬</option>
+               <option value="adventure/throw_trident" style="color: #727272">throw_trident 免洗笑話</option>
+               <option value="adventure/totem_of_undying" style="color: #727272">totem_of_undying 超越生死</option>
+               <option value="adventure/trade" style="color: #727272">trade 成交！</option>
+               <option value="adventure/two_birds_one_arrow" style="color: #727272">two_birds_one_arrow 一箭雙雕</option>
+               <option value="adventure/very_very_frightening" style="color: #727272">very_very_frightening 非常驚世駭俗</option>
+               <option value="adventure/voluntary_exile" style="color: #727272">voluntary_exile 自我放逐</option>
+               <option value="adventure/whos_the_pillager_now" style="color: #727272">whos_the_pillager_now 現在誰才是掠奪者？</option>
+               <option value="end/dragon_breath" style="color: #7F0A7C">dragon_breath 你需要降火氣</option>
+               <option value="end/dragon_egg" style="color: #7F0A7C">dragon_egg 銀河飛龍</option>
+               <option value="end/elytra" style="color: #7F0A7C">elytra 天下無難事</option>
+               <option value="end/enter_end_gateway" style="color: #7F0A7C">enter_end_gateway 逃向遠方</option>
+               <option value="end/find_end_city" style="color: #7F0A7C">find_end_city 終末都市</option>
+               <option value="end/kill_dragon" style="color: #7F0A7C">kill_dragon 解放終界</option>
+               <option value="end/levitate" style="color: #7F0A7C">levitate 上面的風景真好</option>
+               <option value="end/respawn_dragon" style="color: #7F0A7C">respawn_dragon 終界…再臨…</option>
+               <option value="end/root" style="color: #7F0A7C">root 終界</option>
+               <option value="husbandry/balanced_diet" style="color: #A1680A">balanced_diet 均衡飲食</option>
+               <option value="husbandry/bred_all_animals" style="color: #A1680A">bred_all_animals 成雙成對</option>
+               <option value="husbandry/breed_an_animal" style="color: #A1680A">breed_an_animal 送子鳥的禮物</option>
+               <option value="husbandry/complete_catalogue" style="color: #A1680A">complete_catalogue 貓科全書</option>
+               <option value="husbandry/fishy_business" style="color: #A1680A">fishy_business 關漁生意</option>
+               <option value="husbandry/obtain_netherite_hoe" style="color: #A1680A">obtain_netherite_hoe 獄髓鋤</option>
+               <option value="husbandry/plant_seed" style="color: #A1680A">plant_seed 汗滴禾下土</option>
+               <option value="husbandry/root" style="color: #A1680A">root 農牧</option>
+               <option value="husbandry/safely_harvest_honey" style="color: #A1680A">safely_harvest_honey 待客蜂範</option>
+               <option value="husbandry/silk_touch_nest" style="color: #A1680A">silk_touch_nest 蜂裝物流</option>
+               <option value="husbandry/tactical_fishing" style="color: #A1680A">tactical_fishing 戰術性捕魚</option>
+               <option value="husbandry/tame_an_animal" style="color: #A1680A">tame_an_animal 永遠的好搭檔</option>
+               <option value="nether/all_effects" style="color: #E40000">all_effects 我們是如何走到這地步的？</option>
+               <option value="nether/all_potions" style="color: #E40000">all_potions 猛烈的雞尾酒</option>
+               <option value="nether/brew_potion" style="color: #E40000">brew_potion 道地的釀造坊</option>
+               <option value="nether/charge_respawn_anchor" style="color: #E40000">charge_respawn_anchor 非言「九」命</option>
+               <option value="nether/create_beacon" style="color: #E40000">create_beacon 為家庭帶來光明</option>
+               <option value="nether/create_full_beacon" style="color: #E40000">create_full_beacon 引導者</option>
+               <option value="nether/distract_piglin" style="color: #E40000">distract_piglin 金光閃閃</option>
+               <option value="nether/explore_nether" style="color: #E40000">explore_nether 「熱」門景點</option>
+               <option value="nether/fast_travel" style="color: #E40000">fast_travel 子空間氣泡</option>
+               <option value="nether/find_bastion" style="color: #E40000">find_bastion 今非昔比</option>
+               <option value="nether/find_fortress" style="color: #E40000">find_fortress 可怕的要塞</option>
+               <option value="nether/get_wither_skull" style="color: #E40000">get_wither_skull 詭異又恐怖的骷髏</option>
+               <option value="nether/loot_bastion" style="color: #E40000">loot_bastion 戰豬</option>
+               <option value="nether/netherite_armor" style="color: #E40000">netherite_armor 以瓦礫為壁壘</option>
+               <option value="nether/obtain_ancient_debris" style="color: #E40000">obtain_ancient_debris 深藏不露</option>
+               <option value="nether/obtain_blaze_rod" style="color: #E40000">obtain_blaze_rod 與火共舞</option>
+               <option value="nether/obtain_crying_obsidian" style="color: #E40000">obtain_crying_obsidian 是誰在切洋蔥？</option>
+               <option value="nether/return_to_sender" style="color: #E40000">return_to_sender 以牙還牙</option>
+               <option value="nether/ride_strider" style="color: #E40000">ride_strider 「行」舟</option>
+               <option value="nether/root" style="color: #E40000">root 地獄</option>
+               <option value="nether/summon_wither" style="color: #E40000">summon_wither 凋零山莊</option>
+               <option value="nether/uneasy_alliance" style="color: #E40000">uneasy_alliance 不安的同盟</option>
+               <option value="nether/use_lodestone" style="color: #E40000">use_lodestone 天涯共此石</option>
+               <option value="story/cure_zombie_villager" style="color: #08AA3B">cure_zombie_villager 殭屍醫生</option>
+               <option value="story/deflect_arrow" style="color: #08AA3B">deflect_arrow 抱歉，今天不行</option>
+               <option value="story/enchant_item" style="color: #08AA3B">enchant_item 附魔師</option>
+               <option value="story/enter_the_end" style="color: #08AA3B">enter_the_end 結束了？</option>
+               <option value="story/enter_the_nether" style="color: #08AA3B">enter_the_nether 我們必須更深入一點</option>
+               <option value="story/follow_ender_eye" style="color: #08AA3B">follow_ender_eye 隔牆有眼</option>
+               <option value="story/form_obsidian" style="color: #08AA3B">form_obsidian 冰桶挑戰</option>
+               <option value="story/iron_tools" style="color: #08AA3B">iron_tools 莫非這是鐵鎬</option>
+               <option value="story/lava_bucket" style="color: #08AA3B">lava_bucket 火熱的東西</option>
+               <option value="story/mine_diamond" style="color: #08AA3B">mine_diamond 鑽石！</option>
+               <option value="story/mine_stone" style="color: #08AA3B">mine_stone 石器時代</option>
+               <option value="story/obtain_armor" style="color: #08AA3B">obtain_armor 整裝待發</option>
+               <option value="story/root" style="color: #08AA3B">root Minecraft</option>
+               <option value="story/shiny_gear" style="color: #08AA3B">shiny_gear 用鑽石包覆我</option>
+               <option value="story/smelt_iron" style="color: #08AA3B">smelt_iron 來硬的</option>
+               <option value="story/upgrade_tools" style="color: #08AA3B">upgrade_tools 獲取升級</option>
+            </select>
+            <br><br>
+            <input type="checkbox" id="target-adv-inverse" style="float:left; margin: 5px; width: 16px">
+            <label for="target-adv-inverse" style="float:left;">設定為「不得擁有此進度」?&nbsp&nbsp&nbsp&nbsp</label>
+            <br><br><br><br>
+         </div>
+         </form>
+      </fieldset>
+      <br><br>
+      <fieldset>
+         <legend>實體參數</legend>
+         <div>
+            <p style="float:left;">&nbsp選擇實體類型，只有同類型的對象才會被選擇。</p>
+            <br><br><br><br>
+            <label style="float:left;">&nbsp選擇類型:&nbsp&nbsp</label>
+            <select id="target-type" style="font-size: 18px; float:left; width: 65%;">
+               <option value="none">(選擇其一...)</option>
+               <option value="armor_stand">minecraft:armor_stand 盔甲架</option>
+               <option value="arrow">minecraft:arrow 箭矢</option>
+               <option value="bat">minecraft:bat 蝙蝠</option>
+               <option value="bee">minecraft:bee 蜜蜂</option>
+               <option value="blaze">minecraft:blaze 烈焰使者</option>
+               <option value="boat">minecraft:boat 船</option>
+               <option value="cat">minecraft:cat 貓</option>
+               <option value="cave_spider">minecraft:cave_spider 洞穴蜘蛛</option>
+               <option value="chest_minecart">minecraft:chest_minecart 儲物箱礦車</option>
+               <option value="chicken">minecraft:chicken 雞</option>
+               <option value="cod">minecraft:cod 鱈魚</option>
+               <option value="command_block_minecart">minecraft:command_block_minecart 指令方塊礦車</option>
+               <option value="cow">minecraft:cow 牛</option>
+               <option value="creeper">minecraft:creeper 苦力帕</option>
+               <option value="dolphin">minecraft:dolphin 海豚</option>
+               <option value="donkey">minecraft:donkey 驢</option>
+               <option value="dragon_fireball">minecraft:dragon_fireball 龍炎彈</option>
+               <option value="drowned">minecraft:drowned 沉屍</option>
+               <option value="egg">minecraft:egg 雞蛋</option>
+               <option value="elder_guardian">minecraft:elder_guardian 遠古深海守衛</option>
+               <option value="end_crystal">minecraft:end_crystal 終界水晶</option>
+               <option value="ender_dragon">minecraft:ender_dragon 終界龍</option>
+               <option value="ender_pearl">minecraft:ender_pearl 終界珍珠</option>
+               <option value="enderman">minecraft:enderman 終界使者</option>
+               <option value="endermite">minecraft:endermite 終界蟎</option>
+               <option value="evoker">minecraft:evoker 喚魔者</option>
+               <option value="evoker_fangs">minecraft:evoker_fangs 喚魔者尖牙</option>
+               <option value="experience_bottle">minecraft:experience_bottle 經驗瓶</option>
+               <option value="experience_orb">minecraft:experience_orb 經驗球</option>
+               <option value="eye_of_ender">minecraft:eye_of_ender 終界之眼</option>
+               <option value="falling_block">minecraft:falling_block 墜落的方塊</option>
+               <option value="fireball">minecraft:fireball 地獄幽靈的火球</option>
+               <option value="firework_rocket">minecraft:firework_rocket 煙火</option>
+               <option value="fox">minecraft:fox 狐狸</option>
+               <option value="furnace_minecart">minecraft:furnace_minecart 熔爐礦車</option>
+               <option value="ghast">minecraft:ghast 地獄幽靈</option>
+               <option value="giant">minecraft:giant 巨人</option>
+               <option value="guardian">minecraft:guardian 深海守衛</option>
+               <option value="hoglin">minecraft:hoglin 豬布獸</option>
+               <option value="hopper_minecart">minecraft:hopper_minecart 漏斗礦車</option>
+               <option value="horse">minecraft:horse 馬</option>
+               <option value="husk">minecraft:husk 屍殼</option>
+               <option value="illusioner">minecraft:illusioner 幻術師</option>
+               <option value="iron_golem">minecraft:iron_golem 鐵魔像</option>
+               <option value="item">minecraft:item 物品</option>
+               <option value="item_frame">minecraft:item_frame 物品展示框</option>
+               <option value="leash_knot">minecraft:leash_knot 栓繩</option>
+               <option value="lightning_bolt">minecraft:lightning_bolt 閃電</option>
+               <option value="llama">minecraft:llama 羊駝</option>
+               <option value="llama_spit">minecraft:llama_spit 羊駝的口水</option>
+               <option value="magma_cube">minecraft:magma_cube 岩漿史萊姆</option>
+               <option value="minecart">minecraft:minecart 礦車</option>
+               <option value="mooshroom">minecraft:mooshroom 哞菇</option>
+               <option value="mule">minecraft:mule 騾</option>
+               <option value="ocelot">minecraft:ocelot 豹貓</option>
+               <option value="painting">minecraft:painting 畫像</option>
+               <option value="panda">minecraft:panda 熊貓</option>
+               <option value="parrot">minecraft:parrot 鸚鵡</option>
+               <option value="phantom">minecraft:phantom 幻影</option>
+               <option value="pig">minecraft:pig 豬</option>
+               <option value="piglin">minecraft:piglin 豬布林</option>
+               <option value="piglin_brute">minecraft:piglin_brute 豬布林蠻兵</option>
+               <option value="pillager">minecraft:pillager 掠奪者</option>
+               <option value="polar_bear">minecraft:polar_bear 北極熊</option>
+               <option value="potion">minecraft:potion 藥水瓶</option>
+               <option value="pufferfish">minecraft:pufferfish 河豚</option>
+               <option value="rabbit">minecraft:rabbit 兔子</option>
+               <option value="ravager">minecraft:ravager 劫毀獸</option>
+               <option value="salmon">minecraft:salmon 鮭魚</option>
+               <option value="sheep">minecraft:sheep 羊</option>
+               <option value="shulker">minecraft:shulker 界伏蚌</option>
+               <option value="shulker_bullet">minecraft:shulker_bullet 界伏蚌的子彈</option>
+               <option value="silverfish">minecraft:silverfish 蠹魚</option>
+               <option value="skeleton">minecraft:skeleton 骷髏</option>
+               <option value="skeleton_horse">minecraft:skeleton_horse 骷髏馬</option>
+               <option value="slime">minecraft:slime 史萊姆</option>
+               <option value="small_fireball">minecraft:small_fireball 烈焰使者的火焰彈</option>
+               <option value="snow_golem">minecraft:snow_golem 雪人</option>
+               <option value="snowball">minecraft:snowball 雪球</option>
+               <option value="spawner_minecart">minecraft:spawner_minecart 生怪磚</option>
+               <option value="spectral_arrow">minecraft:spectral_arrow 追跡之箭</option>
+               <option value="spider">minecraft:spider 蜘蛛</option>
+               <option value="squid">minecraft:squid 烏賊</option>
+               <option value="stray">minecraft:stray 流觸</option>
+               <option value="strider">minecraft:strider 熾足獸</option>
+               <option value="tnt">minecraft:tnt TNT炸藥</option>
+               <option value="tnt_minecart">minecraft:tnt_minecart TNT炸藥礦車</option>
+               <option value="trader_llama">minecraft:trader_llama 商駝</option>
+               <option value="trident">minecraft:trident 三叉戟</option>
+               <option value="tropical_fish">minecraft:tropical_fish 熱帶魚</option>
+               <option value="turtle">minecraft:turtle 烏龜</option>
+               <option value="vex">minecraft:vex 惱鬼</option>
+               <option value="villager">minecraft:villager 村民</option>
+               <option value="vindicator">minecraft:vindicator 衛道士</option>
+               <option value="wandering_trader">minecraft:wandering_trader 流浪商人</option>
+               <option value="witch">minecraft:witch 女巫</option>
+               <option value="wither">minecraft:wither 凋零怪</option>
+               <option value="wither_skeleton">minecraft:wither_skeleton 凋零骷髏</option>
+               <option value="wither_skull">minecraft:wither_skull 凋零怪的骷髏頭</option>
+               <option value="wolf">minecraft:wolf 狼</option>
+               <option value="zoglin">minecraft:zoglin 殭屍化的豬布林(殭屍豬人)</option>
+               <option value="zombie">minecraft:zombie 殭屍</option>
+               <option value="zombie_horse">minecraft:zombie_horse 殭屍馬</option>
+               <option value="zombie_villager">minecraft:zombie_villager 殭屍村民</option>
+            </select>
+            <br><br>
+            <input type="checkbox" id="target-type-inverse" style="float:left; margin: 5px; width: 16px">
+            <label for="target-type-inverse" style="float:left;">設定為「不得為某類型」?&nbsp&nbsp&nbsp&nbsp</label>
+            <button id="target-type-set-inverse" style="float:left; width: 240px" disabled= 'true'>新增不能相同之類型</button>
+            <br><br>
+            <label style="float:left;">&nbsp結果:&nbsp&nbsp</label>
+            <input id="target-type-bar" style="font-size: 18px; float:left; width: 360px;" placeholder="例如:!a,!b => 不得與A、B實體類型相同">
+            <br><br><br><br>
+            <p style="float:left;">&nbsp設定實體必須/必須不被加入的隊伍名稱。<br>名稱之間須須用逗號隔開，必須不加入的隊伍名稱前須加驚嘆號。<br>若要設定「不加入任何隊伍」，請勾選「不加入任何隊伍」選項。</p>
+            <br><br><br><br><br><br>
+            <label style="float:left;">&nbsp設定加入/不得加入之隊伍:&nbsp&nbsp</label>
+            <input id="target-team-bar" style="font-size: 18px; float:left; width: 360px;" placeholder="例如:a,!b => 必須加入A隊伍、不加入B隊伍">
+            <input type="checkbox" id="target-team-none" style="float:left; margin: 5px; width: 16px">
+           <label for="target-team-none" style="float:left;">不能加入任何隊伍?&nbsp</label>
+            <input type="checkbox" id="target-team-every" style="float:left; margin: 5px; width: 16px">
+            <label for="target-team-every" style="float:left;">只要加入隊伍就可以?&nbsp</label>
+            <br><br><br>
+            <p style="float:left;">&nbsp設定實體擁有/不得擁有之標籤名稱。<br>名稱之間須須用逗號隔開，不得擁有的標籤名稱前須加驚嘆號。<br>若要設定「不得擁有任何標籤」，請勾選「不得擁有任何標籤」選項。</p>
+            <br><br><br><br><br><br>
+            <label style="float:left;">&nbsp設定擁有/不得擁有之標籤:&nbsp&nbsp</label>
+            <input id="target-tag-bar" style="font-size: 18px; float:left; width: 360px;" placeholder="例如:a,!b => 擁有A標籤、不得擁有B標籤">
+            <input type="checkbox" id="target-tag-none" style="float:left; margin: 5px; width: 16px">
+            <label for="target-tag-none" style="float:left;">不得擁有任何標籤?&nbsp</label>
+            <input type="checkbox" id="target-tag-every" style="float:left; margin: 5px; width: 16px">
+            <label for="target-tag-every" style="float:left;">只要擁有標籤就可以?&nbsp</label>
+            <br><br><br><br>
+            <label style="float:left;">&nbsp設定擁有/不得擁有之名字:&nbsp&nbsp</label>
+            <input id="target-name-bar" style="font-size: 18px; float:left; width: 360px;" placeholder="例如:a,!b => 擁有A名字、不得擁有B名字">
+            <br><br><br>
+            <p style="float:left;">&nbsp設定實體在實體上必須/必須不成立之述詞之方法亦同。</p>
+            <br><br><br>
+            <label style="float:left;">&nbsp設定在實體上成立之述詞:&nbsp&nbsp</label>
+            <input id="target-predicate-bar" style="font-size: 18px; float:left; width: 360px;" placeholder="例如:a,!b => A述詞必須成立、B述詞不得成立">
+            <br><br><br><br>
+            <p style="float:left;">&nbsp設定實體必須擁有之nbt。網站不會幫你檢查nbt的正確性，請自行確認。</p>
+            <br><br><br>
+            <textarea id="target-nbt" style="font-size: 18px; float:left; width:100%" cols="85" rows="3" placeholder="輸入nbt。舉例:{OnGround:1b}"></textarea>
+         </div>
+      </fieldset>
+      <br>
+      <button id="generate" style="float:left; width: 100%;">產生目標選擇器</button>
+      <br>
+      <textarea id="generated_codes" style="font-size: 18px; float:left; width: 100%;" readonly="true" cols="100" rows="3">尚未產生</textarea>
+      <script src="script.js"></script>
+   </body>
+</html>
